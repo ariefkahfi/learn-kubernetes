@@ -16,8 +16,6 @@ kind: Service
 metadata:
   name: httpd-outside-cluster
 spec:
-  selector:
-    app: myapp
   ports:
     - port: 9999
       targetPort: 8888
