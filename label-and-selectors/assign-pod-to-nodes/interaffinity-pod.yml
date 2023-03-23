@@ -1,0 +1,46 @@
+# need to place frontend and backend pods into same node
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-server
+  labels:
+    tier: backend
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                  - backend
+          topologyKey: kubernetes.io/hostname
+  containers:
+    - name: api-server
+      image: tomcat
+      ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+  labels:
+    tier: frontend
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                  - backend
+          topologyKey: kubernetes.io/hostname
+  containers:
+    - name: web-app
+      image: nginx
+      ports:
+        - containerPort: 80
