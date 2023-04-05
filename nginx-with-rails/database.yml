@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-database
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: postgres-database
+  template:
+    metadata:
+      labels:
+        tier: postgres-database
+    spec:
+      containers:
+        - name: postgres-database
+          image: postgres
+          ports:
+            - containerPort: 5432
