@@ -5,6 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN bundle install
+RUN bundle config set force_ruby_platform true
 
 EXPOSE 3000
 
