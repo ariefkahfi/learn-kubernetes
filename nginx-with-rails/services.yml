@@ -4,7 +4,7 @@ metadata:
   name: postgres-service
 spec:
   selector:
-    app: database
+    tier: postgres-database
   ports:
     - port: 5432
       targetPort: 5432
@@ -16,7 +16,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: rails-api
+    app: backend-api
   ports:
     - port: 3000
       targetPort: 3000
