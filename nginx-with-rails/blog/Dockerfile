@@ -5,6 +5,8 @@ WORKDIR /app
 COPY . .
 
 RUN bundle install
+RUN apt update
+RUN apt -yqq install libpq-dev
 
 EXPOSE 3000
 

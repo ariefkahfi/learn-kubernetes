@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: backend-api
-          image: ariefkahfi/hello-rails-app:1.0.1
+          image: ariefkahfi/hello-rails-app:1.0.3
           ports:
             - containerPort: 3000

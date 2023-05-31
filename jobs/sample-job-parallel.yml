@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-job-parallel
+spec:
+  # ttlSecondsAfterFinished: 100
+  parallelism: 10
+  template:
+    spec:
+      containers:
+        - name: calculation
+          image: ruby:3.0-bullseye
+          command: ["ruby", "-e", 'puts "2 + 3 = #{2 + 3}"']
+      restartPolicy: Never
