@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-empty-dir
+  labels:
+    name: pod-empty-dir
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command:
+        - "sleep"
+        - "3600"
+      volumeMounts:
+        - mountPath: /custom-documents
+          name: documents
+    - name: alpine
+      image: alpine
+      command:
+        - "sleep"
+        - "3600"
+      volumeMounts:
+        - mountPath: /custom-documents
+          name: documents
+  volumes:
+    - name: documents
+      emptyDir:
+        sizeLimit: 100Mi
